@@ -1,7 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Header } from './components/Header';
-import { Portfolio } from './pages/Portfolio';
-import { ManageProjects } from './pages/ManageProjects';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Header } from "./components/Header";
+import { Portfolio } from "./pages/Portfolio";
+import { ManageProjects } from "./pages/ManageProjects";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -10,7 +11,14 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Portfolio />} />
-          <Route path="/manage" element={<ManageProjects />} />
+          <Route
+            path="/manage"
+            element={
+              <ProtectedRoute>
+                <ManageProjects />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </Router>
